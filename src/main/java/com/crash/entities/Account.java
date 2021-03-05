@@ -1,7 +1,9 @@
 package com.crash.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +30,9 @@ public class Account implements Serializable{
 	private String password;
 	@Column(unique = true)
 	private String email;
+	
+	@OneToMany(mappedBy = "account")
+	private List<Transaciton> transactions = new ArrayList<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_user_role",
@@ -80,6 +86,10 @@ public class Account implements Serializable{
 		return roles;
 	}
 
+	public List<Transaciton> getTransactions() {
+		return transactions;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,5 +114,4 @@ public class Account implements Serializable{
 			return false;
 		return true;
 	}
-
 }

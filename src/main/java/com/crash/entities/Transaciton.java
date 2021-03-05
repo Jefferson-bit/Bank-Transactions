@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.crash.enums.CurrencyCode;
@@ -15,7 +18,12 @@ import com.crash.enums.Typetransferency;
 public class Transaciton implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "account_id")
+	private Account account;
+	
 	private String encodedKey;
 	private String arrangementId;
 	private LocalDateTime bookingDate;
@@ -124,4 +132,11 @@ public class Transaciton implements Serializable {
 		this.amount = amount;
 	}
 
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 }
