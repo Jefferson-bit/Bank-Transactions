@@ -35,8 +35,8 @@ public class Account implements Serializable{
 	private List<Transaciton> transactions = new ArrayList<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_user_role",
-	joinColumns =  @JoinColumn(name = "user_id"), 
+	@JoinTable(name = "tb_account_role",
+	joinColumns =  @JoinColumn(name = "account_id"), 
 	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 	

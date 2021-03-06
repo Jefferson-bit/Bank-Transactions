@@ -1,7 +1,7 @@
 package com.crash.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,8 +26,8 @@ public class Transaciton implements Serializable {
 	
 	private String encodedKey;
 	private String arrangementId;
-	private LocalDateTime bookingDate;
-	private LocalDateTime valueDate;
+	private Instant bookingDate;
+	private Instant valueDate;
 	private Typetransferency typeTransferency;
 	private Double amount;
 	private CurrencyCode currencyCode;
@@ -59,21 +59,21 @@ public class Transaciton implements Serializable {
 	public void setArrangementId(String arrangementId) {
 		this.arrangementId = arrangementId;
 	}
-
-	public LocalDateTime getBookingDate() {
+	
+	public Instant getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(LocalDateTime bookingDate) {
+	public void setBookingDate(Instant bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 
-	public LocalDateTime getValueDate() {
+	public Instant getValueeDat() {
 		return valueDate;
 	}
 
-	public void setValueDate(LocalDateTime valueDate) {
-		this.valueDate = valueDate;
+	public void setValueeDat(Instant valueeDat) {
+		this.valueDate = valueeDat;
 	}
 
 	public Typetransferency getTypeTransferency() {
