@@ -31,14 +31,14 @@ public class Account implements Serializable{
 	@Column(unique = true)
 	private String email;
 	
-	@OneToMany(mappedBy = "account")
-	private List<Transaciton> transactions = new ArrayList<>();
-	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "tb_account_role",
 	joinColumns =  @JoinColumn(name = "account_id"), 
 	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany(mappedBy = "account")
+	private List<Transaction> transactions = new ArrayList<>();
 	
 	public Account() {
 	}
@@ -50,11 +50,11 @@ public class Account implements Serializable{
 		this.email = email;
 	}
 
-	public Long getId() {
+	public Long getAccountId() {
 		return accountId;
 	}
 
-	public void setId(Long accountId) {
+	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
 
@@ -86,7 +86,7 @@ public class Account implements Serializable{
 		return roles;
 	}
 
-	public List<Transaciton> getTransactions() {
+	public List<Transaction> getTransactions() {
 		return transactions;
 	}
 	
