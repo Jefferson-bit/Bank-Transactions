@@ -8,4 +8,5 @@ import com.crash.entities.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long>{
 	
+	Account findByEmail(String email);
 }
