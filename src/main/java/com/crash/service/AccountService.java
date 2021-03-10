@@ -33,10 +33,11 @@ public class AccountService implements UserDetailsService {
 	@Transactional(readOnly = true)
 	public TransactionDTO findByTransaction(Long accountId, Long id) {
 		AccountDTO dto = userService.getUserAuthenticated();
+		Optional<Transaction> transaction = Optional.ofNullable(transactionRepository.findById(id).orElseThrow(() ->
+		new ResourceNotFoundException("Not Found")));
 		for (TransactionDTO list : dto.getTransactions()) {
 			if (list.getId().equals(id) && dto.getAccountId().equals(accountId)) {
-				Optional<Transaction> transaction = transactionRepository.findById(list.getId());
-				return new TransactionDTO(transaction.orElseThrow(() -> new ResourceNotFoundException("Not Found")));
+				return new TransactionDTO(transaction.get());
 			}
 		}
 		throw new ForbiddenException("Access Denied");
