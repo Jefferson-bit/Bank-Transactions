@@ -27,13 +27,12 @@ public class AccountDTO implements Serializable {
 		this.name = entity.getName();
 		this.email = entity.getEmail();
 	}
-	
+
 	public AccountDTO(Account entity, List<Transaction> list) {
 		this(entity);
 		list.forEach(x -> this.transactions.add(new TransactionDTO(x)));
-		
 	}
-	
+
 	public Long getAccountId() {
 		return accountId;
 	}
